@@ -59,8 +59,8 @@ async def webtopdf(_, m):
     print("Total ", len(video_tags), "videos found")
     if len(video_tags) != 0:
         for video_tag in video_tags:
-        video_url = video_tag.find("a")['href']
-        print(video_url)
+            video_url = video_tag.find("a")['href']
+            print(video_url)
 
     """
     time_limit = 30
