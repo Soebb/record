@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import os, time
 import requests
+from bs4 import BeautifulSoup
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 API_ID = os.environ.get("API_ID")
@@ -42,6 +43,16 @@ async def start(bot, update):
 async def webtopdf(_, m):
 
     url = m.text
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    video_tags = soup.findAll('video')
+    print("Total ", len(video_tags), "videos found")
+    if len(video_tags) != 0:
+        for video_tag in video_tags:
+        video_url = video_tag.find("a")['href']
+        print(video_url)
+
+    """
     time_limit = 30
     time_elapsed = 0
     start_time_in_seconds = time.time()
@@ -55,7 +66,7 @@ async def webtopdf(_, m):
                 if int(time.time() - start_time_in_seconds)- time_elapsed > 0 :
                     time_elapsed = int(time.time() - start_time_in_seconds)
     await m.reply_video('video.mp4')
-
+    """
 
 
 
