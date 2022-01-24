@@ -43,7 +43,6 @@ async def start(bot, update):
 async def webtopdf(_, m):
 
     url = m.text
-    """
     from urllib.request import Request, urlopen
     req = Request(url)
     html_page = urlopen(req)
@@ -62,7 +61,6 @@ async def webtopdf(_, m):
             video_url = video_tag.find("a")['href']
             print(video_url)
 
-    """
     time_limit = 30
     time_elapsed = 0
     start_time_in_seconds = time.time()
