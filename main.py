@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-import os
+import os, time
 import requests
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
@@ -40,13 +40,18 @@ async def start(bot, update):
 
 @Bot.on_message(filters.private & filters.text)
 async def webtopdf(_, m):
+
     url = m.text
+    start_time_in_seconds = time.time()
     with requests.get(url, stream=True, allow_redirects=True) as r :
         with open('video.mp4', 'wb') as f :
             for chunk in r.iter_content(chunk_size=1024*1024) :
                 if (chunk) :
                     f.write(chunk)
-
+                if time_elapsed > time_limit:
+                    break
+                if int(time.time() - start_time_in_seconds)- time_elapsed > 0 :
+                    time_elapsed = int(time.time() - start_time_in_seconds)
     await m.reply_video('video.mp4')
 
 
