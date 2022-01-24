@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-import os, time
+import os, time, re
 import requests
 from bs4 import BeautifulSoup
 
@@ -43,6 +43,16 @@ async def start(bot, update):
 async def webtopdf(_, m):
 
     url = m.text
+    """
+    from urllib.request import Request, urlopen
+    req = Request(url)
+    html_page = urlopen(req)
+    soup = BeautifulSoup(html_page, "lxml")
+    links = []
+    for link in soup.findAll('a'):
+        links.append(link.get('href'))
+    print(links)
+    """
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
     video_tags = soup.findAll('video')
