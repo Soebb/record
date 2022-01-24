@@ -42,6 +42,8 @@ async def start(bot, update):
 async def webtopdf(_, m):
 
     url = m.text
+    time_limit = 30
+    time_elapsed = 0
     start_time_in_seconds = time.time()
     with requests.get(url, stream=True, allow_redirects=True) as r :
         with open('video.mp4', 'wb') as f :
