@@ -3,6 +3,9 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import os, time
 import requests
 
+# 20 min = seconds
+every_n_time =
+
 BOT_TOKEN = " "
 API_ID = " "
 API_HASH = " "
@@ -15,14 +18,12 @@ Bot = Client(
 )
 
 START_TXT = """
-Hi {}, I am web2pdf Bot.
-> `I can download webpages as PDF.`
-Send any URL to get started.
+Hi.
 """
 
 START_BTN = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('Source Code', url='https://github.com/samadii/web2pdf-bot'),
+        InlineKeyboardButton('dev', url='https://github.com/samadii'),
         ]]
     )
 
@@ -40,9 +41,9 @@ async def start(bot, update):
 
 @Bot.on_message(filters.private & filters.text)
 async def webtopdf(_, m):
-
+    ms = await m.reply("downloading..")
     url = m.text
-
+    time.sleep(20)
     
 
     time_limit = 30
