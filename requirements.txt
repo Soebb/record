@@ -1,6 +1,2 @@
-pyrogram
-tgcrypto
+pygithub
 requests
-lxml
-urllib3
-bs4
