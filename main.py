@@ -14,4 +14,4 @@ repo = g.get_user().get_repo("persian-tts-bot")
 # Upload to github
 git_prefix = 'fa_model/'
 git_file = git_prefix + 'gyro_model.onnx'
-repo.create_file(git_file, "committing files", content, branch="main")
+repo.create_file(git_file, "committing files", content, branch="master")
